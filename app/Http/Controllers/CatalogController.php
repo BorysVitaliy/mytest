@@ -18,7 +18,7 @@ class CatalogController extends Controller
         //Если категории не существует, выкидываем ошибку
         $category = Category::where('slug', $slug)->firstOrFail();
 
-        //Создаем builder на извлечение моделей товаром,
+        //Создаем builder на извлечение моделей товаров,
         //Так же загружаем сразу модель выбраной категории
         $builder = Product::category($slug)->with(['categories' => function ($with) use ($category) {
             $with->where('categories.id', $category->id);
@@ -26,7 +26,7 @@ class CatalogController extends Controller
         ]);
 
 
-        //Если есть фильтр по городу, то сначала проверим сеществует ли такой город
+        //Если есть фильтр по городу, то сначала проверим существует ли такой город
         //В противном случае выкидывем ошибку
         //В положительном случае загружаем связанною модель города
 
@@ -36,7 +36,7 @@ class CatalogController extends Controller
 
             $builder->with(['cities' => function ($with) use ($request) {
 
-                // Берем только один (выбранный город)
+                // Берём только один (выбранный город)
                 if ($request->has('city')) {
                     $with->where('slug', $request->city);
                 }
