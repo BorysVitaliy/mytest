@@ -45,8 +45,12 @@ php artisan migrate
 ```
 
 ```
-php artisan db::seed
+php artisan db:seed
+```
+6  сгенерируйту app key 
+```
+php artisan key:generate
 ```
 
-6. Готово
+7 Готово
 
