@@ -23,9 +23,9 @@ class ProductCollection extends ResourceCollection
     public function with($request) : array
     {
         return [
-            'child_categories' => $this[0]->categories->first()->children()->select('title','slug')->get(),
+            'child_categories' => Category::collection( $this[0]->categories->first()->children()->select('title','slug')->get()),
             'breadcrumbs'=> $this[0]->categories->first()->getBreadCrumbs(),
-            'cities' => $this[0]->categories->first()->getCities()
+            'cities' =>  $this[0]->categories->first()->getCities()
         ];
     }
 
